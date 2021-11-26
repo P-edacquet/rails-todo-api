@@ -6,13 +6,13 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get todos_url, as: :json
+    get '/todos', as: :json
     assert_response :success
   end
 
   test "should create todo" do
     assert_difference('Todo.count') do
-      post todos_url, params: { todo: { task: @todo.task } }, as: :json
+      post todos_url(), params: { todo: { task: @todo.task } }, as: :json
     end
 
     assert_response 201

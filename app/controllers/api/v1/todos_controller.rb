@@ -3,9 +3,10 @@ class Api::V1::TodosController < ApplicationController
 
   # GET /todos
   def index
-    @todos = Todo.all
-
-    render json: @todos
+    if logged_in? && current_user
+      @todos = current_user.todos
+      render json: @todos
+    end
   end
 
   # GET /todos/1

@@ -16,12 +16,14 @@ class Api::V1::TodosController < ApplicationController
 
   # POST /todos
   def create
-    @todo = Todo.new(todo_params)
-
-    if @todo.save
-      render json: @todo, status: :created, location: api_v1_todos_path(@todo)
-    else
-      render json: @todo.errors, status: :unprocessable_entity
+    #TODO comparer current_user avec le user donné par react
+    if logged_in? && current_user
+      @todo = Todo.new(todo_params.merge(user: current_user))
+      if @todo.save
+        render json: @todo, status: :created, location: api_v1_todos_path(@todo)
+      else
+        render json: @todo.errors, status: :unprocessable_entity
+      end
     end
   end
 

@@ -29,6 +29,10 @@ class SessionsController < ApplicationController
         message: 'no such user'
       }
     end
+    puts 'aaaaaaaaaaaaaa'
+    puts 'current_user : '
+    puts current_user
+    puts 'bbbbbbbbbbbbbb'
   end
 
   def destroy
